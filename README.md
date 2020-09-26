@@ -1,6 +1,6 @@
 # Budget
 
-A small React Context API app that tra
+A small React Context API app to track your income/expenses.
 
 # Built With
 
