@@ -1,38 +1,388 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Muli:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  background-color: #77c987 !important;
+  height: 100%; width: 100%;
+}
+
+.app-wrapper {
+  width: 100% !important; height: 100% !important;
+  max-width: 190rem;
+  border-radius: 0.5rem;
+  background-color: #2c2c2d; 
+  color: #eee;
+  box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+
+.header {
+  display: flex; justify-content: center; align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header h1 {
+  font-family: "Muli", serif !important;
+  font-size: 4.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: #f46036;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.balance {
+  display: flex; justify-content: space-around; align-items: center;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.balance h2 {
+  font-family: "Baloo Da 2", serif !important;
+  font-size: 4.5rem;
+  font-weight: 300;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.balance h3 {
+  font-family: "Baloo Da 2", serif !important;
+  font-size: 4rem;
+  font-weight: 300;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.income-expense {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "Muli", serif;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+  text-align: right;
+}
+
+.plus, .minus {
+  margin: 0 2rem;
+}
+
+.plus {
+  color: #77c987;
+}
+
+.minus {
+  color: #ff716e;
+}
+
+.income-expense h3 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.income-expense p {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-wrapper {
+  display: flex; justify-content: space-around; align-items: center;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.input-group input:not([type="submit"]) {
+  width: 30rem;
+  margin-bottom: 2.5rem;
+  border: none;
+  background: transparent;
+  border-bottom: 0.2rem solid #777;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  font-family: "Baloo Da 2", serif;
+  font-size: 1.8rem;
+  color: #eee;
+  outline: none;
+  transition: border-bottom 0.4s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.income input:not([type="submit"]):focus {
+  border-bottom: 0.2rem solid #77c987;
+}
+
+.expense input:not([type="submit"]):focus {
+  border-bottom: 0.2rem solid #ff716e;
+}
+
+.input-group input[type="submit"] {
+  width: 10rem;
+  padding: 0.7rem;
+  border: none;
+  outline: none;
+  border-radius: 0.7rem;
+  font-family: "Muli", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  color: #eee;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 1rem;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.input-group input[type="submit"]:active {
+  transform: translateY(0.3rem);
+}
+
+.income input[type="submit"] {
+  background-color: #77c987;
+}
+
+.expense input[type="submit"] {
+  background-color: #ff716e;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.transactions {
+  display: flex; justify-content: space-around; align-items: center;
+}
+
+.transactions h2 {
+  font-family: "Baloo da 2", serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.transactions-income, .transactions-expense {
+ display: flex; align-items: center; justify-content: center;
+ flex-direction: column;
+}
+
+.transaction-list {
+  max-height: 35rem;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #aaa;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+.transaction {
+  list-style: none;
+  font-family: "Baloo da 2", serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  padding: 0.4rem 0.4rem 0.4rem 0.7rem;
+  border-radius: 0.3rem;
+  width: 29rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.transaction-list .transaction > div {
+  display: flex; align-items: center;
+  width: 85%; background: #77c987;
+  padding: .5rem; border-radius: .25rem;
+}
+.transactions-expense .transaction > div {
+  display: flex; align-items: center;
+  width: 85%; 
+  padding: .5rem; border-radius: .25rem;
+  background: #ff716e;
+}
+
+.transaction-amount {
+  margin-left: auto;
+}
+
+.delete-btn {
+  border: none;
+  background-color: transparent; color: #d4403e;
+  font-size: 2rem; margin: 0 1rem;
+  text-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+  cursor: pointer; outline: none;
+}
+
+
+
+
+/* MEDIA QUERIES */
+
+/* Extra small  */
+@media (max-width: 575.98px) { 
+  html {
+    font-size: 52%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app-wrapper {
+    width: 100%; grid-gap: 0;
+    grid-template-rows: 80px 200px repeat(2, 1fr);
   }
+  .header h1 {
+    font-size: 2.5rem;
+  }
+.balance {
+  flex-direction: column;
+  height: 150px;
+}
+.transactions {
+  flex-direction: column;
+}
+  .transaction-list {
+    max-height: 29rem;
+  }
+  .transaction {
+    width: 28rem;
+  }
+  .form-wrapper {
+    flex-direction: column;
+  }
+  .form-wrapper form {
+    margin-bottom: 2.5rem;
+  }
+  .transaction-list {
+    max-height: 29rem;
+  }
+  .balance h2{
+    font-size: 3rem;
+  }
+  .plus h3, .minus h3 {
+    font-size: 2.5rem;
+  }
+  .plus p, .minus p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  html {
+    font-size: 55%;
+  }
+
+  .app-wrapper {
+    width: 100%;
+    grid-template-rows: 80px 150px 1fr 120px;
+    grid-gap: 0;
+  }
+  .header h1 {
+    font-size: 3rem;
+  }
+  .form-wrapper {
+    flex-direction: column;
+  }
+  .form-wrapper form {
+    margin-bottom: 2.5rem;
+  }
+  .transaction-list {
+    max-height: 29rem;
+  }
+  .balance h2 {
+    font-size: 3rem;
+  }
+  .plus h3, .minus h3 {
+    font-size: 2.5rem;
+  }
+  .plus p, .minus p {
+    font-size: 1.5rem;
+  }
+.transactions {
+  display: flex; justify-content: space-around; align-items: initial;
+}
+.transactions-expense, .transactions-income {
+justify-content: initial;
+}
+}
+
+/* Medium  */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  html {
+    font-size: 50%;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  .balance h2{
+    font-size: 3rem;
+  }
+  .plus h3, .minus h3 {
+    font-size: 2.5rem;
+  }
+  .plus p, .minus p {
+    font-size: 1.5rem;
+  }
+  .app-wrapper {
+    grid-gap: 0;
+  }
+  .transaction-list {
+    max-height: 29rem;
+  }
+  .balance {
+    margin-top: 1rem;
+  }
+  .transactions h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Large */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  html {
+    font-size: 52%;
+  }
+  .balance {
+    margin-top: 2rem;
+  }
+  .income-expense {
+    margin-top: 2rem;
+  }
+  .balance h2 {
+    font-size: 3rem;
+  }
+  .plus h3, .minus h3 {
+    font-size: 2.5rem;
+  }
+  .plus p, .minus p {
+    font-size: 1.5rem;
+  }
+  .app-wrapper {
+    grid-gap: 0;
+  }
+  .transaction-list {
+    max-height: 29rem;
+  }
+}
+
+/* Extra large */
+@media (min-width: 1200px) { 
+  
 }
